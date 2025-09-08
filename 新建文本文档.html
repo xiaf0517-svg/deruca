@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>德魯糖果屋</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', '微軟正黑體', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #fff0f5 0%, #f8e8ff 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            padding: 30px 0;
+        }
+        
+        .candy-decoration {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            z-index: -1;
+            opacity: 0.7;
+        }
+        
+        .candy {
+            font-size: 28px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .candy:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+        
+        .candy:nth-child(3) {
+            animation-delay: 1s;
+        }
+        
+        .candy:nth-child(4) {
+            animation-delay: 1.5s;
+        }
+        
+        .candy:nth-child(5) {
+            animation-delay: 2s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(10deg); }
+        }
+        
+        h1 {
+            font-size: 3.2rem;
+            color: #ff4aa1;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            letter-spacing: 2px;
+        }
+        
+        .subtitle {
+            font-size: 2rem;
+            color: #c663d8;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+        
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .product {
+            background: white;
+            border-radius: 20px;
+            padding: 30px 25px;
+            width: 250px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 60px;
+            height: 60px;
+            background: #ffc2d9;
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .product:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-name {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff4aa1;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .product-desc {
+            color: #777;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+        
+        .product-large {
+            background: linear-gradient(45deg, #ff4aa1, #c663d8);
+            color: white;
+            width: 300px;
+        }
+        
+        .product-large .product-name {
+            color: white;
+            font-size: 2.2rem;
+        }
+        
+        .product-large .product-desc {
+            color: #fff;
+            opacity: 0.9;
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-primary {
+            background: #ff4aa1;
+            color: white;
+            box-shadow: 0 5px 20px rgba(255, 74, 161, 0.35);
+        }
+        
+        .btn-primary:hover {
+            background: #ff338f;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 74, 161, 0.5);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #ff4aa1;
+            border: 2px solid #ff4aa1;
+        }
+        
+        .btn-secondary:hover {
+            background: #fff5f7;
+            transform: translateY(-3px);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 80px;
+            color: #c663d8;
+            font-size: 1rem;
+            padding: 20px;
+            border-top: 1px solid #ffc2d9;
+        }
+        
+        .candy-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.1;
+        }
+        
+        .candy-bg-item {
+            position: absolute;
+            font-size: 24px;
+            opacity: 0.5;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.6rem;
+            }
+            
+            .products {
+                gap: 20px;
+            }
+            
+            .product {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="candy-background" id="candyBackground"></div>
+    
+    <div class="container">
+        <header>
+            <div class="candy-decoration">
+                <div class="candy">🍬</div>
+                <div class="candy">🍭</div>
+                <div class="candy">🍫</div>
+                <div class="candy">🍡</div>
+                <div class="candy">🍪</div>
+            </div>
+            <h1>歡迎來到德魯糖果屋</h1>
+            <div class="subtitle">德魯糖果專賣店</div>
+        </header>
+        
+        <div class="products">
+            <div class="product">
+                <div class="product-name">SP2S</div>
+                <p>潮流炫酷，大煙勁爽，SP2S體驗非凡</p>
+            </div>
+            
+            <div class="product">
+                <div class="product-name">ILIA</div>
+                <p class="product-desc">天然純淨，清新口感，ILIA喚醒感官</p>
+            </div>
+            
+            <div class="product">
+                <div class="product-name">LANA</div>
+                <p class="product-desc">柔美設計，溫和滿足，LANA如伴身旁</p>
+            </div>
+            
+            <div class="product product-large">
+                <div class="product-name">RELX</div>
+                <p class="product-desc">經典信賴，口感綿長，RELX悅刻品質</p>
+            </div>
+        </div>
+        
+        <div class="buttons">
+            <a href="https://derucandy.com" class="btn btn-primary">
+                <i class="fas fa-store"></i> 前往官方商城
+            </a>
+            <a href="https://lin.ee/T8m8Nzq" class="btn btn-secondary">
+                <i class="fas fa-headset"></i> 聯繫客服人員
+            </a>
+        </div>
+        
+        <footer>
+            <p>© 2025 德魯糖果專賣店 - 讓甜蜜充滿每個時刻</p>
+        </footer>
+    </div>
+
+    <script>
+        // 创建背景糖果元素
+        function createCandyBackground() {
+            const background = document.getElementById('candyBackground');
+            const candies = ['🍬', '🍭', '🍫', '🍡', '🍪', '🍒', '🥨'];
+            
+            for (let i = 0; i < 25; i++) {
+                const candy = document.createElement('div');
+                candy.classList.add('candy-bg-item');
+                candy.textContent = candies[Math.floor(Math.random() * candies.length)];
+                candy.style.left = `${Math.random() * 100}%`;
+                candy.style.top = `${Math.random() * 100}%`;
+                candy.style.fontSize = `${Math.random() * 20 + 15}px`;
+                candy.style.opacity = Math.random() * 0.3 + 0.1;
+                candy.style.transform = `rotate(${Math.random() * 360}deg)`;
+                background.appendChild(candy);
+            }
+        }
+        
+ 
+    </script>
+</body>
+</html>
